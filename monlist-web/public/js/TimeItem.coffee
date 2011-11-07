@@ -7,3 +7,22 @@ window.TimeItem = class TimeItem
     @minute = +minute
     @hour = 24 if @hour > 24
     @minute = 60 if @minute > 60
+
+  isBetween: (a, b) ->
+    if a.compareTo this < this.compareTo b && a.compareTo b < 0 
+      return true
+    else
+      return false
+
+  compareTo: (timeItem) ->
+    if @hour == timeItem.hour
+      if @minute == timeItem.minute
+        return 0
+      else if @minute < timeItem.minute
+        return -1
+      else
+        return 1
+    else if @hour < timeItem.hour
+      return -1
+    else
+      return 1
